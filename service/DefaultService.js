@@ -27,3 +27,14 @@ exports.entryGetEntriesGET = function() {
   });
 }
 
+
+/**
+ *
+ * no response value expected for this operation
+ **/
+exports.resetEntriesPOST = function() {
+  return new Promise(function(resolve, reject) {
+    resolve();
+  });
+}
+

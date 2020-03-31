@@ -12,3 +12,13 @@ module.exports.entryGetEntriesGET = function entryGetEntriesGET (req, res, next)
       utils.writeJson(res, response);
     });
 };
+
+module.exports.resetEntriesPOST = function resetEntriesPOST (req, res, next) {
+  Default.resetEntriesPOST()
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};

@@ -51,6 +51,15 @@ paths:
         "400":
           description: Invalid status value
       x-swagger-router-controller: Default
+  /resetEntries:
+    post:
+      operationId: resetEntriesPOST
+      responses:
+        "200":
+          description: ok
+        "400":
+          description: invalid input
+      x-swagger-router-controller: Default
 components:
   schemas:
     Entry:
