@@ -1,40 +1,36 @@
 'use strict';
-
-
+var fs = require('fs');
+const path = require('path');
+const pathToFile = './samples.json';
 /**
  *
  * returns List
  **/
 exports.entryGetEntriesGET = function() {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "timeStamp" : "timeStamp",
-  "temp" : 6,
-  "lumen" : 0,
-  "receivedDate" : "receivedDate"
-}, {
-  "timeStamp" : "timeStamp",
-  "temp" : 6,
-  "lumen" : 0,
-  "receivedDate" : "receivedDate"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
-
+	return new Promise(function(resolve, reject) {
+		fs.readFile(path.resolve(pathToFile), 'utf8', function(err, data) {
+			if (err) {
+				console.log(err);
+				resolve();
+			} else {
+				console.log(data);
+				resolve(JSON.parse(data));
+			}
+		});
+	});
+};
 
 /**
  *
  * no response value expected for this operation
  **/
 exports.resetEntriesPOST = function() {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
-}
-
+	return new Promise(function(resolve, reject) {
+		fs.writeFile(path.resolve(pathToFile), '[]', 'utf8', (err, data) => {
+			if (err) {
+				console.log(err);
+			}
+			resolve();
+		});
+	});
+};
