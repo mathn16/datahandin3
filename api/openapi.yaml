@@ -14,13 +14,14 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   version: 1.0.0
 servers:
-  - url: /mathn16/DataHandinThree/1.0.0
-    description: SwaggerHub API Auto Mocking
+- url: https://virtserver.swaggerhub.com/mathn16/DataHandinThree/1.0.0
+  description: SwaggerHub API Auto Mocking
+- url: https://petstore.swagger.io/v2
 paths:
   /postEntry:
     post:
       tags:
-        - Entry
+      - Entry
       summary: Adds a new entry
       operationId: addEntry
       requestBody:
@@ -29,16 +30,18 @@ paths:
             schema:
               $ref: '#/components/schemas/Entry'
       responses:
-        '200':
+        "200":
           description: ok
-        '405':
+        "405":
           description: Invalid input
       x-swagger-router-controller: Entry
   /entry/getEntries:
     get:
+      tags:
+      - Entry
       operationId: entryGetEntriesGET
       responses:
-        '200':
+        "200":
           description: successful operation
           content:
             application/json:
@@ -47,18 +50,20 @@ paths:
                 items:
                   $ref: '#/components/schemas/ReturnEntry'
                 x-content-type: application/json
-        '400':
+        "400":
           description: Invalid status value
-      x-swagger-router-controller: Default
+      x-swagger-router-controller: Entry
   /resetEntries:
     post:
+      tags:
+      - Entry
       operationId: resetEntriesPOST
       responses:
         "200":
           description: ok
         "400":
           description: invalid input
-      x-swagger-router-controller: Default
+      x-swagger-router-controller: Entry
 components:
   schemas:
     Entry:
@@ -70,6 +75,8 @@ components:
           type: integer
         timeStamp:
           type: string
+        counter:
+          type: integer
     ReturnEntry:
       type: object
       properties:
