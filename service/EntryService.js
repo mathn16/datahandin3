@@ -19,6 +19,7 @@ exports.addEntry = function(body) {
 				resolve();
 			} else {
 				obj = JSON.parse(data); //now it an object
+				body['receivedDate'] = Math.round(Date.now() / 1000);
 				obj.push(body); //add some data
 				json = JSON.stringify(obj); //convert it back to json
 				fs.writeFile(path.resolve(pathToFile), json, 'utf8', (err, data) => {
