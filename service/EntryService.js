@@ -18,7 +18,7 @@ exports.addEntry = function(body) {
 				console.log(err);
 				resolve();
 			} else {
-				obj = JSON.parse(data); //now it an object
+				let obj = JSON.parse(data); //now it an object
 				body['receivedDate'] = Math.round(Date.now() / 1000);
 				obj.push(body); //add some data
 				json = JSON.stringify(obj); //convert it back to json
