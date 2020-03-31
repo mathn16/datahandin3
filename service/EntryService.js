@@ -1,4 +1,7 @@
 'use strict';
+const path = require('path');
+const fs = require('fs');
+const pathToFile = './samples.json';
 
 /**
  * Adds a new entry
@@ -8,6 +11,7 @@
  **/
 exports.addEntry = function(body) {
 	return new Promise(function(resolve, reject) {
+		console.log('Add new entry!');
 		fs.readFile(path.resolve(pathToFile), 'utf8', function readFileCallback(
 			err,
 			data
@@ -43,6 +47,7 @@ exports.addEntry = function(body) {
  **/
 exports.entryGetEntriesGET = function() {
 	return new Promise(function(resolve, reject) {
+		console.log('GET');
 		fs.readFile(path.resolve(pathToFile), 'utf8', function(err, data) {
 			if (err) {
 				console.log(err);
@@ -61,6 +66,7 @@ exports.entryGetEntriesGET = function() {
  **/
 exports.resetEntriesPOST = function() {
 	return new Promise(function(resolve, reject) {
+		console.log('RESET_________');
 		fs.writeFile(path.resolve(pathToFile), '[]', 'utf8', (err, data) => {
 			if (err) {
 				console.log(err);
