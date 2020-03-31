@@ -14,6 +14,7 @@ exports.addEntry = function(body) {
 			err,
 			data
 		) {
+			console.log(body);
 			if (err) {
 				console.log(err);
 				resolve();
@@ -21,13 +22,18 @@ exports.addEntry = function(body) {
 				let obj = JSON.parse(data); //now it an object
 				body['receivedDate'] = Math.round(Date.now() / 1000);
 				obj.push(body); //add some data
-				json = JSON.stringify(obj); //convert it back to json
-				fs.writeFile(path.resolve(pathToFile), json, 'utf8', (err, data) => {
-					if (err) {
-						console.log(err);
+				let jsonString = JSON.stringify(obj); //convert it back to json
+				fs.writeFile(
+					path.resolve(pathToFile),
+					jsonString,
+					'utf8',
+					(err, data) => {
+						if (err) {
+							console.log(err);
+						}
+						resolve();
 					}
-					resolve();
-				});
+				);
 			}
 		});
 	});
